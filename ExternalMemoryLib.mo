@@ -54,11 +54,11 @@ package ExternalMemoryLib
                    __iti_dllNoExport = true);
     end getRealValueAt;
   end ExternalMemory_;
-  annotation (uses(Modelica(version="3.2.1")));
+
   package Examples
-    model realArray
+    model RealArray "Just a simple testmodel."
       import ExternalMemoryLib.ExternalMemoryReal;
-      parameter Integer arraySize = 5;
+      parameter Integer arraySize = 3;
       ExternalMemoryReal realArray = ExternalMemoryReal(arraySize);
 
       Real val(start=0);
@@ -68,14 +68,34 @@ package ExternalMemoryLib
       when sample(0,0.1) then
         ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,0,val-1);
         ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,1,val+1);
+        ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,2,val);
       end when;
 
       when sample(0,0.2) then
         v1 = ExternalMemoryLib.ExternalMemory_.getRealValueAt(realArray,0);
         v2 = ExternalMemoryLib.ExternalMemory_.getRealValueAt(realArray,1);
-        v3 = ExternalMemoryLib.ExternalMemory_.getRealValueAt(realArray,5);
+        v3 = ExternalMemoryLib.ExternalMemory_.getRealValueAt(realArray,2);
 
       end when;
-    end realArray;
+    end RealArray;
+
+    model Minimum
+      "Try to store the global minimum of the whole x-trajectory over time"
+      Real x( start=3, fixed = true);
+      Real der_x( start=-1, fixed = true);
+      Real y1(start=3);
+      Real y2(start=3);
+      ExternalMemoryReal globalMin = ExternalMemoryReal(1);
+    algorithm
+      //It would be so cool, if this would work, but it doesn't
+      y1 := min(y1,x);
+      //Thats why, we have to do it like this:
+      y2 := min(ExternalMemoryLib.ExternalMemory_.getRealValueAt(globalMin,0),x);
+      ExternalMemoryLib.ExternalMemory_.setRealValueAt(globalMin,0,y2);
+    equation
+      der(x) = der_x;
+      der(der_x) = - x +1.0 - 0.1*time;
+    end Minimum;
   end Examples;
+  annotation (uses(Modelica(version="3.2.1")));
 end ExternalMemoryLib;
