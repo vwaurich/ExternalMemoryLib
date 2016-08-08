@@ -19,6 +19,11 @@ __declspec( dllexport )
 
 #if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__)
 
+typedef struct {
+	double* extMemArray;
+	int size;
+} extMemReal;
+
 /** Constructor for ExternalMemory of type double*/
 DllExport void* externalMemoryRealConstructor(int size);
 
