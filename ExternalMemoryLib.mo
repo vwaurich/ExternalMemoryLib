@@ -235,7 +235,8 @@ package ExternalMemoryLib
       input ExternalMemoryRealTC extMem;
       input Integer idx "0-based";
       input Real value;
-      external "C" setRealValueAtWithTC(extMem, idx, value)
+      input Real timeIn;
+      external "C" setRealValueAtWithTC(extMem, idx, value, timeIn)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
@@ -452,9 +453,9 @@ package ExternalMemoryLib
     equation
       val = time;
       when sample(0,0.1) then
-        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,0,val-1);
-        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,1,val+1);
-        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,2,val);
+        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,0,val-1, time);
+        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,1,val+1, time);
+        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,2,val, time);
       end when;
 
       when sample(0,0.2) then

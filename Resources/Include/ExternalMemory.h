@@ -108,7 +108,7 @@ DllExport void* externalMemoryRealTCConstructor(int size, double time);
 DllExport void externalMemoryRealTCDestructor(void* extMemObj);
 
 /** Set double data in ExternalMemory with time control*/
-DllExport void setRealValueAtWithTC(void* extMemObj, int idx, double value);
+DllExport void setRealValueAtWithTC(void* extMemObj, int idx, double value, double time);
 
 /** Get double data in ExternalMemory  with time control*/
 DllExport void getRealValueAtWithTC(void* extMemObj, int idx, double* outValue, double time, double fallbackValue);

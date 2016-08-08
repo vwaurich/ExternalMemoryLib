@@ -216,10 +216,11 @@ DllExport void externalMemoryRealTCDestructor(void* extMemObj) {
 
 /** Set data in ExternalMemory
 */
-DllExport void setRealValueAtWithTC(void* extMemObj, int idx, double value) {
+DllExport void setRealValueAtWithTC(void* extMemObj, int idx, double value, double time) {
 	extMemRealTC* extMem = (extMemRealTC*)extMemObj;
 	if (extMem->size > idx) {
 		extMem->extMemArray[idx] = value;
+		extMem->time = time;
 	}
 	else {
 		ModelicaFormatError("ExternalMemory::setRealValueAt failed! The zero-based index %d is higher than the array size %d.", idx, extMem->size);
