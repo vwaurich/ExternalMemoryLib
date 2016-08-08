@@ -36,6 +36,8 @@ DllExport void setRealValueAt(void* extMemObj, int idx, double value);
 /** Get double data in ExternalMemory */
 DllExport void getRealValueAt(void* extMemObj, int idx, double* outValue);
 
+/** Get double range data in ExternalMemory */
+DllExport void getRealRangeAt(void* extMemObj, int startIdx, int len, double* outValue);
 
 #endif /* defined(_MSC_VER) */
 

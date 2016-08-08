@@ -53,6 +53,20 @@ package ExternalMemoryLib
                    __iti_dll = "ExternalMemory.dll",
                    __iti_dllNoExport = true);
     end getRealValueAt;
+
+    function getRealRangeAt
+      input ExternalMemoryReal extMem;
+      input Integer startIdx "0-based";
+      input Integer len "length of range";
+      output Real[len] value;
+      external "C" getRealRangeAt(extMem, startIdx, len, value)
+        annotation(Include = "#include \"ExternalMemory.h\"",
+                   Library = "ExternalMemory",
+                   IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
+                   LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
+                   __iti_dll = "ExternalMemory.dll",
+                   __iti_dllNoExport = true);
+    end getRealRangeAt;
   end ExternalMemory_;
 
   package Examples
@@ -78,6 +92,26 @@ package ExternalMemoryLib
 
       end when;
     end RealArray;
+
+    model RealArrayRange "Just a simple testmodel."
+      import ExternalMemoryLib.ExternalMemoryReal;
+      parameter Integer arraySize = 3;
+      ExternalMemoryReal realArray = ExternalMemoryReal(arraySize);
+
+      Real val(start=0);
+      Real[3] v1;
+    equation
+      val = time;
+      when sample(0,0.1) then
+        ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,0,val-1);
+        ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,1,val+1);
+        ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,2,val);
+      end when;
+
+      when sample(0,0.2) then
+        v1 = ExternalMemoryLib.ExternalMemory_.getRealRangeAt(realArray,0,3);
+      end when;
+    end RealArrayRange;
 
     model Minimum
       "Try to store the global minimum of the whole x-trajectory over time"

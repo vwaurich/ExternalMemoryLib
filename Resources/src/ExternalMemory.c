@@ -7,7 +7,8 @@
 
 #include "..\Include\ExternalMemory.h"
 
-
+/** Constructor for real array
+*/
 DllExport void* externalMemoryRealConstructor(int size) {
 	extMemReal* extMem = calloc(1, sizeof(extMemReal));
 	extMem->size = size;
@@ -15,6 +16,8 @@ DllExport void* externalMemoryRealConstructor(int size) {
     return (void*)extMem;
 }
 
+/** Destructor for real array
+*/
 DllExport void externalMemoryRealDestructor(void* extMemObj) {
 	extMemReal* extMem = (extMemReal*)extMemObj;
     if (extMem) {
@@ -44,5 +47,18 @@ DllExport void getRealValueAt(void* extMemObj, int idx, double* outValue) {
 	else
 	{
 	  ModelicaFormatError("ExternalMemory::getRealValueAt failed. The zero-based index %d is higher than the array size %d.", idx, extMem->size);
+	}
+}
+
+/** Get data range in ExternalMemory
+*/
+DllExport void getRealRangeAt(void* extMemObj, int startIdx, int len,  double* outValue) {
+	extMemReal* extMem = (extMemReal*)extMemObj;
+	if (extMem->size >= (startIdx + len)) {
+		memcpy(outValue, &extMem->extMemArray[startIdx], sizeof(double)*(len));
+	}
+	else
+	{
+		ModelicaFormatError("ExternalMemory::getRealRangeAt failed. The zero-based index [%d + %d]is higher than the array size %d.", startIdx, len, extMem->size);
 	}
 }
