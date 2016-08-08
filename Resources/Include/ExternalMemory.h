@@ -25,6 +25,12 @@ typedef struct {
 } extMemReal;
 
 typedef struct {
+	double* extMemArray;
+	int size;
+	double time;
+} extMemRealTC;
+
+typedef struct {
 	int* extMemArray;
 	int size;
 } extMemInt;
@@ -90,6 +96,26 @@ DllExport void getBoolValueAt(void* extMemObj, int idx, boolean* outValue);
 
 /** Get boolean range data in ExternalMemory */
 DllExport void getBoolRangeAt(void* extMemObj, int startIdx, int len, boolean* outValue);
+
+/*
+--------- Functions for REAL type  with time control ---------
+*/
+
+/** Constructor for ExternalMemory of type double with time control*/
+DllExport void* externalMemoryRealTCConstructor(int size, double time);
+
+/** Destructor for ExternalMemory of type double with time control*/
+DllExport void externalMemoryRealTCDestructor(void* extMemObj);
+
+/** Set double data in ExternalMemory with time control*/
+DllExport void setRealValueAtWithTC(void* extMemObj, int idx, double value);
+
+/** Get double data in ExternalMemory  with time control*/
+DllExport void getRealValueAtWithTC(void* extMemObj, int idx, double* outValue, double time, double fallbackValue);
+
+/** Get double range data in ExternalMemory  with time control*/
+DllExport void getRealRangeAtWithTC(void* extMemObj, int startIdx, int len, double* outValue, double time, double* fallBackArray);
+
 
 #endif /* defined(_MSC_VER) */
 

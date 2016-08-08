@@ -81,6 +81,34 @@ package ExternalMemoryLib
     end destructor;
   end ExternalMemoryBool;
 
+  class ExternalMemoryRealTC " An object for external memory with time control"
+    extends ExternalObject;
+    function constructor
+      "Creates an instance of an external array of type double."
+      input Integer size = 1 "size of the array";
+      input Real timeIn = 2 "time of the first value";
+      output ExternalMemoryRealTC extMem;
+      external "C" extMem =  externalMemoryRealTCConstructor(size,timeIn)
+        annotation(Include = "#include \"ExternalMemory.h\"",
+                   Library = "ExternalMemory",
+                   IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
+                   LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
+                   __iti_dll = "ExternalMemory.dll",
+                   __iti_dllNoExport = true);
+    end constructor;
+
+    function destructor
+      input ExternalMemoryRealTC extMem;
+      external "C" externalMemoryRealTCDestructor(extMem)
+        annotation(Include = "#include \"ExternalMemory.h\"",
+                   Library = "ExternalMemory",
+                   IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
+                   LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
+                   __iti_dll = "ExternalMemory.dll",
+                   __iti_dllNoExport = true);
+    end destructor;
+  end ExternalMemoryRealTC;
+
   package ExternalMemory_
     function setRealValueAt
       input ExternalMemoryReal extMem;
@@ -202,6 +230,51 @@ package ExternalMemoryLib
                    __iti_dll = "ExternalMemory.dll",
                    __iti_dllNoExport = true);
     end getBoolRangeAt_notWorking;
+
+    function setRealValueAtWithTC
+      input ExternalMemoryRealTC extMem;
+      input Integer idx "0-based";
+      input Real value;
+      external "C" setRealValueAtWithTC(extMem, idx, value)
+        annotation(Include = "#include \"ExternalMemory.h\"",
+                   Library = "ExternalMemory",
+                   IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
+                   LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
+                   __iti_dll = "ExternalMemory.dll",
+                   __iti_dllNoExport = true);
+    end setRealValueAtWithTC;
+
+    function getRealValueAtWithTC
+      input ExternalMemoryRealTC extMem;
+      input Integer idx "0-based";
+      input Real timeIn;
+      input Real fallbackValue;
+      output Real value;
+      external "C" getRealValueAtWithTC(extMem, idx, value, timeIn, fallbackValue)
+        annotation(Include = "#include \"ExternalMemory.h\"",
+                   Library = "ExternalMemory",
+                   IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
+                   LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
+                   __iti_dll = "ExternalMemory.dll",
+                   __iti_dllNoExport = true);
+    end getRealValueAtWithTC;
+
+    function getRealRangeAtWithTC
+      input ExternalMemoryReal extMem;
+      input Integer startIdx "0-based";
+      input Integer len "length of range";
+      input Real timeIn;
+      input Real[len] fallbackValue;
+      output Real[len] value;
+      external "C" getRealRangeAtWithTC(extMem, startIdx, len, value, timeIn, fallbackValue)
+        annotation(Include = "#include \"ExternalMemory.h\"",
+                   Library = "ExternalMemory",
+                   IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
+                   LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
+                   __iti_dll = "ExternalMemory.dll",
+                   __iti_dllNoExport = true);
+    end getRealRangeAtWithTC;
+
   end ExternalMemory_;
 
   package Examples
@@ -368,6 +441,29 @@ package ExternalMemoryLib
         v1 = ExternalMemoryLib.ExternalMemory_.getIntRangeAt(intArray,0,arraySize);
       end when;
     end IntArrayRange;
+
+    model RealArray_withTimeControl "Just a simple testmodel."
+      import ExternalMemoryLib.ExternalMemoryReal;
+      parameter Integer arraySize = 3;
+      ExternalMemoryRealTC realArray = ExternalMemoryRealTC(arraySize,time);
+
+      Real val(start=0);
+      Real v1(start=0),v2,v3;
+    equation
+      val = time;
+      when sample(0,0.1) then
+        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,0,val-1);
+        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,1,val+1);
+        ExternalMemoryLib.ExternalMemory_.setRealValueAtWithTC(realArray,2,val);
+      end when;
+
+      when sample(0,0.2) then
+        v1 = ExternalMemoryLib.ExternalMemory_.getRealValueAtWithTC(realArray,0,time,8);
+        v2 = ExternalMemoryLib.ExternalMemory_.getRealValueAtWithTC(realArray,1,time,8);
+        v3 = ExternalMemoryLib.ExternalMemory_.getRealValueAtWithTC(realArray,2,time,8);
+
+      end when;
+    end RealArray_withTimeControl;
   end Examples;
   annotation (uses(Modelica(version="3.2.1")));
 end ExternalMemoryLib;
