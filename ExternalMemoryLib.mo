@@ -13,6 +13,7 @@ package ExternalMemoryLib
       else
         ExternalMemoryLib.ExternalMemory_.setRealValueAt(arr, idx-1, value);
       end if;
+                            annotation(__ModelicaAssociation_Impure=true);
     end setReal;
 
     function setRealRange
@@ -27,6 +28,7 @@ package ExternalMemoryLib
       else
         ExternalMemoryLib.ExternalMemory_.setRealRangeAt(arr, idx-1, size, valueArr);
       end if;
+                            annotation(__ModelicaAssociation_Impure=true);
     end setRealRange;
 
     function getReal
@@ -41,6 +43,7 @@ package ExternalMemoryLib
       else
         val := ExternalMemoryLib.ExternalMemory_.getRealValueAt(arr, idx-1);
       end if;
+                            annotation(__ModelicaAssociation_Impure=true);
     end getReal;
 
     function getRealRange
@@ -55,6 +58,7 @@ package ExternalMemoryLib
       else
         val := ExternalMemoryLib.ExternalMemory_.getRealRangeAt(arr, idx-1, size);
       end if;
+                            annotation(__ModelicaAssociation_Impure=true);
     end getRealRange;
   end Functions;
 
@@ -229,7 +233,7 @@ package ExternalMemoryLib
           thickness=0.5,
           smooth=Smooth.None));
       annotation (                                 Diagram(coordinateSystem(
-              preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics));
+              preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),StopTime=10);
     end Wreckingball;
 
     model RealArray "Just a simple testmodel."
@@ -387,6 +391,24 @@ package ExternalMemoryLib
         v3 = ExternalMemoryLib.ExternalMemory_.getRealValueAtWithTC(realArray,2,time,8);
     end RealArray_withTimeControl;
 
+    model RealArray_noWrapper "Just a simple testmodel."
+      import ExternalMemoryLib.ExternalMemoryReal;
+      parameter Integer arraySize = 3;
+      ExternalMemoryReal realArray = ExternalMemoryReal(arraySize);
+
+      Real val(start=0);
+      Real v1(start=0),v2,v3;
+    algorithm
+      val :=time;
+      ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,1-1,val-1);
+      ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,2-1,val+1);
+      ExternalMemoryLib.ExternalMemory_.setRealValueAt(realArray,3-1,val);
+
+      v1 :=ExternalMemoryLib.ExternalMemory_.getRealValueAt(realArray, 1 - 1);
+      v2 :=ExternalMemoryLib.ExternalMemory_.getRealValueAt(realArray, 2 - 1);
+      v3 :=ExternalMemoryLib.ExternalMemory_.getRealValueAt(realArray, 3 - 1);
+
+    end RealArray_noWrapper;
   end Examples;
 
   class ExternalMemoryReal " An object for external memory"
