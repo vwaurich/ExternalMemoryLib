@@ -11,8 +11,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end constructor;
 
     function destructor
@@ -22,8 +22,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end destructor;
   end ExternalMemoryReal;
 
@@ -38,8 +38,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end constructor;
 
     function destructor
@@ -49,8 +49,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end destructor;
   end ExternalMemoryInt;
 
@@ -65,8 +65,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end constructor;
 
     function destructor
@@ -76,8 +76,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end destructor;
   end ExternalMemoryBool;
 
@@ -93,8 +93,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end constructor;
 
     function destructor
@@ -104,8 +104,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end destructor;
   end ExternalMemoryRealTC;
 
@@ -119,8 +119,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end setRealValueAt;
 
     function getRealValueAt
@@ -132,8 +132,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getRealValueAt;
 
     function getRealRangeAt
@@ -146,8 +146,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getRealRangeAt;
 
     function setIntValueAt
@@ -159,8 +159,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end setIntValueAt;
 
     function getIntValueAt
@@ -172,8 +172,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getIntValueAt;
 
     function getIntRangeAt
@@ -186,8 +186,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getIntRangeAt;
 
     function setBoolValueAt
@@ -199,8 +199,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end setBoolValueAt;
 
     function getBoolValueAt
@@ -212,8 +212,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getBoolValueAt;
 
     function getBoolRangeAt_notWorking
@@ -227,8 +227,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getBoolRangeAt_notWorking;
 
     function setRealValueAtWithTC
@@ -241,8 +241,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end setRealValueAtWithTC;
 
     function getRealValueAtWithTC
@@ -256,8 +256,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getRealValueAtWithTC;
 
     function getRealRangeAtWithTC
@@ -272,8 +272,8 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getRealRangeAtWithTC;
 
   end ExternalMemory_;
