@@ -31,11 +31,25 @@ DllExport void setRealValueAt(void* extMemObj, int idx, double value) {
 	extMemReal* extMem = (extMemReal*)extMemObj;
 	if (extMem->size > idx) {
 		extMem->extMemArray[idx] = value;
+		//ModelicaFormatMessage("ExternalMemory::setRealValueAt set %f! at %d\n", extMem->extMemArray[idx], idx);
 	}
 	else {
 		ModelicaFormatError("ExternalMemory::setRealValueAt failed! The zero-based index %d is higher than the array size %d.", idx, extMem->size);
 	}
 }
+
+/** Set double data range in ExternalMemory */
+DllExport void setRealRangeAt(void* extMemObj, int startIdx, int len, double* valArr) {
+	extMemReal* extMem = (extMemReal*)extMemObj;
+	if (extMem->size >= (startIdx+len)) {
+		memcpy(&extMem->extMemArray[startIdx], &valArr[startIdx], sizeof(double)*(len));
+	}
+	else {
+		ModelicaFormatError("ExternalMemory::setRealRangeAt failed. The zero-based index [%d + %d]is higher than the array size %d.", startIdx, len, extMem->size);
+	}
+}
+
+
 
 /** Get data in ExternalMemory
  */
@@ -43,6 +57,8 @@ DllExport void getRealValueAt(void* extMemObj, int idx, double* outValue) {
 	extMemReal* extMem = (extMemReal*)extMemObj;
     if (extMem->size > idx) {
       outValue[0] = extMem->extMemArray[idx];
+	  //ModelicaFormatMessage("ExternalMemory::getRealValueAt  %f! at %d\n", outValue[0], idx);
+
     }
 	else
 	{
@@ -134,7 +150,7 @@ DllExport void getIntRangeAt(void* extMemObj, int startIdx, int len, int* outVal
 DllExport void* externalMemoryBoolConstructor(int size) {
 	extMemBool* extMem = calloc(1, sizeof(extMemBool));
 	extMem->size = size;
-	extMem->extMemArray = (boolean*)calloc(size, sizeof(boolean));
+	extMem->extMemArray = (int*)calloc(size, sizeof(int));
 	return (void*)extMem;
 }
 
@@ -149,11 +165,9 @@ DllExport void externalMemoryBoolDestructor(void* extMemObj) {
 
 /** Set data in ExternalMemory
 */
-DllExport void setBoolValueAt(void* extMemObj, int idx, boolean value) {
+DllExport void setBoolValueAt(void* extMemObj, int idx, int value) {
 	extMemBool* extMem = (extMemBool*)extMemObj;
 	if (extMem->size > idx) {
-		ModelicaFormatMessage(" setBoolValueAt\n");
-
 		extMem->extMemArray[idx] = value;
 	}
 	else {
@@ -163,7 +177,7 @@ DllExport void setBoolValueAt(void* extMemObj, int idx, boolean value) {
 
 /** Get data in ExternalMemory
 */
-DllExport void getBoolValueAt(void* extMemObj, int idx, boolean* outValue) {
+DllExport void getBoolValueAt(void* extMemObj, int idx, int* outValue) {
 	extMemBool* extMem = (extMemBool*)extMemObj;
 	if (extMem->size > idx) {
 		outValue[0] = extMem->extMemArray[idx];
@@ -176,11 +190,11 @@ DllExport void getBoolValueAt(void* extMemObj, int idx, boolean* outValue) {
 
 /** Get data range in ExternalMemory
 */
-DllExport void getBoolRangeAt(void* extMemObj, int startIdx, int len, boolean* outValue) {
+DllExport void getBoolRangeAt(void* extMemObj, int startIdx, int len, int* outValue) {
 	extMemBool* extMem = (extMemBool*)extMemObj;
 	if (extMem->size >= (startIdx + len)) {
 		//ModelicaFormatMessage(" extMemObj %d  %d  %d", extMem->extMemArray[0], extMem->extMemArray[1], extMem->extMemArray[2]);
-		memcpy(outValue, &extMem->extMemArray[startIdx], sizeof(boolean)*(len));
+		memcpy(outValue, &extMem->extMemArray[startIdx], sizeof(int)*(len));
 
 	}
 	else
@@ -192,7 +206,7 @@ DllExport void getBoolRangeAt(void* extMemObj, int startIdx, int len, boolean* o
 
 
 /*
---------- Functions for BOOLEAN type ---------
+--------- Functions for REAL with Time Control type ---------
 */
 
 /** Constructor for real array with time control
@@ -255,7 +269,7 @@ DllExport void getRealRangeAtWithTC(void* extMemObj, int startIdx, int len, doub
 	if (extMem->size >= (startIdx + len)) {
 		if (extMem->time >= time)
 		{
-			ModelicaFormatMessage("getRealRangeAtWithTC: At time %d , we took the fallback array!\n", time);
+			//ModelicaFormatMessage("getRealRangeAtWithTC: At time %d , we took the fallback array!\n", time);
 			memcpy(outValue, &fallBackArray[startIdx], sizeof(double)*(len));
 		}
 		else

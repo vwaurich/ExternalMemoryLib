@@ -36,7 +36,7 @@ typedef struct {
 } extMemInt;
 
 typedef struct {
-	boolean* extMemArray;
+	int* extMemArray;
 	int size;
 } extMemBool;
 
@@ -52,6 +52,9 @@ DllExport void externalMemoryRealDestructor(void* extMemObj);
 
 /** Set double data in ExternalMemory */
 DllExport void setRealValueAt(void* extMemObj, int idx, double value);
+
+/** Set double data range in ExternalMemory */
+DllExport void setRealRangeAt(void* extMemObj, int startIdx, int len, double* valArr);
 
 /** Get double data in ExternalMemory */
 DllExport void getRealValueAt(void* extMemObj, int idx, double* outValue);
@@ -89,13 +92,13 @@ DllExport void* externalMemoryBoolConstructor(int size);
 DllExport void externalMemoryBoolDestructor(void* extMemObj);
 
 /** Set boolean data in ExternalMemory */
-DllExport void setBoolValueAt(void* extMemObj, int idx, boolean value);
+DllExport void setBoolValueAt(void* extMemObj, int idx, int value);
 
 /** Get boolean data in ExternalMemory */
-DllExport void getBoolValueAt(void* extMemObj, int idx, boolean* outValue);
+DllExport void getBoolValueAt(void* extMemObj, int idx, int* outValue);
 
 /** Get boolean range data in ExternalMemory */
-DllExport void getBoolRangeAt(void* extMemObj, int startIdx, int len, boolean* outValue);
+DllExport void getBoolRangeAt(void* extMemObj, int startIdx, int len, int* outValue);
 
 /*
 --------- Functions for REAL type  with time control ---------
