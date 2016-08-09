@@ -9,3 +9,5 @@ Please deploy these functions with considerations since the values are written i
 See ExternalMemoryRealTC (i.e. real array with time control)
 
 The project contains binaries for 32-bit windows. In case you need something different, try to build it yourself. All the sources are on board.
+
+REMARK: The library is still work in progress, but the real arrays should work now.
