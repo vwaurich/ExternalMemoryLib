@@ -88,7 +88,7 @@ package ExternalMemoryLib
       extends Modelica.Icons.Example;
 
       inner Modelica.Mechanics.MultiBody.World world
-        annotation (Placement(transformation(extent={{-92,40},{-72,60}})));
+        annotation (Placement(transformation(extent={{-140,0},{-120,20}})));
 
       /*
   box stuff
@@ -123,46 +123,67 @@ package ExternalMemoryLib
       Modelica.Mechanics.MultiBody.Parts.BodyShape mass1(
         m=1,
         r_CM={0,0,0},
-        r={0,0,0}) annotation (Placement(transformation(extent={{70,40},{90,60}})));
+        r={0,0,0}) annotation (Placement(transformation(extent={{60,40},{80,60}})));
       Modelica.Mechanics.MultiBody.Joints.Prismatic sidefeed(
         useAxisFlange=true,
         v(fixed=true, start=0),
         s(fixed=false, start=0))
         annotation (Placement(transformation(extent={{22,40},{42,60}})));
       Modelica.Mechanics.Translational.Sources.Position position(useSupport=true)
-        annotation (Placement(transformation(extent={{18,68},{38,88}})));
-      Modelica.Blocks.Sources.Sine sine(amplitude=1, freqHz=0.4)
-        annotation (Placement(transformation(extent={{-32,68},{-12,88}})));
+        annotation (Placement(transformation(extent={{34,68},{54,88}})));
+      Modelica.Blocks.Sources.Sine sine(            amplitude=0.6, freqHz=0.5)
+        annotation (Placement(transformation(extent={{4,68},{24,88}})));
       Modelica.Mechanics.MultiBody.Joints.Revolute revolute(cylinderLength=0.2,
         phi(fixed=true, start=0),
         w(fixed=true, start=0))
         annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=270,
-            origin={94,26})));
+            origin={84,26})));
       Modelica.Mechanics.MultiBody.Parts.FixedTranslation rod(r={0,-rodLength,0})
         annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=270,
-            origin={94,-10})));
+            origin={84,-10})));
       Modelica.Mechanics.MultiBody.Parts.Body pendulum(m=500, r_CM={0,0,0})
         annotation (Placement(transformation(
             extent={{-10,-11},{10,11}},
             rotation=270,
-            origin={94,-39})));
+            origin={84,-39})));
       Modelica.Mechanics.MultiBody.Joints.Prismatic forwardfeed(
         useAxisFlange=true,
         s(fixed=false, start=0),
         n={0,0,1},
-        v(fixed=true, start=0.2))
+        v(fixed=false, start=0))
         annotation (Placement(transformation(extent={{-32,40},{-12,60}})));
 
-      Modelica.Mechanics.MultiBody.Parts.FixedTranslation raisePosition(r={0,startWallHeight+(rodLength/2),0},
-          animation=false)
-        annotation (Placement(transformation(extent={{-60,40},{-40,60}})));
 
       Integer wallIdx(start=0);
 
+      Modelica.Blocks.Sources.Trapezoid trapezoid(
+        amplitude=numBoxes*boxLength,
+        period=10,
+        rising=4,
+        falling=4,
+        width=0.5)
+        annotation (Placement(transformation(extent={{-70,68},{-50,88}})));
+      Modelica.Mechanics.Translational.Sources.Position position1(
+                                                                 useSupport=true)
+        annotation (Placement(transformation(extent={{-38,68},{-18,88}})));
+      Modelica.Mechanics.MultiBody.Joints.Prismatic downfeed(
+        useAxisFlange=true,
+        n={0,1,0},
+        s(fixed=false),
+        v(fixed=false))
+        annotation (Placement(transformation(extent={{-102,40},{-82,60}})));
+      Modelica.Mechanics.Translational.Sources.Position position2(
+                                                                 useSupport=true)
+        annotation (Placement(transformation(extent={{-106,66},{-86,86}})));
+      Modelica.Blocks.Sources.Ramp ramp(
+        height=-startWallHeight + (rodLength/2),
+        duration=30,
+        offset=startWallHeight + (rodLength/2))
+        annotation (Placement(transformation(extent={{-138,66},{-118,86}})));
     initial algorithm
       for i in 1:numBoxes loop
         ExternalMemoryLib.Functions.setReal(heightArr,i,startWallHeight,time);
@@ -179,41 +200,41 @@ package ExternalMemoryLib
 
       if (abs(pendulum.r_0[1]) < boxWidth) then
         wallIdx = integer(floor(pendulum.r_0[3]/boxLength));
-        ExternalMemoryLib.Functions.setReal(heightArr,wallIdx,min(pendulum.r_0[2],ExternalMemoryLib.Functions.getReal(heightArr,wallIdx,time)),time);
+        ExternalMemoryLib.Functions.setReal(heightArr,wallIdx,min(abs(pendulum.r_0[2]),ExternalMemoryLib.Functions.getReal(heightArr,wallIdx,time)),time);
 
       else
         wallIdx = 0;
       end if;
 
       connect(mass1.frame_a, sidefeed.frame_b) annotation (Line(
-          points={{70,50},{42,50}},
+          points={{60,50},{42,50}},
           color={95,95,95},
           thickness=0.5,
           smooth=Smooth.None));
       connect(sidefeed.support, position.support) annotation (Line(
-          points={{28,56},{28,68}},
+          points={{28,56},{28,68},{44,68}},
           color={0,127,0},
           smooth=Smooth.None));
       connect(position.flange, sidefeed.axis) annotation (Line(
-          points={{38,78},{38,56},{40,56}},
+          points={{54,78},{54,56},{40,56}},
           color={0,127,0},
           smooth=Smooth.None));
       connect(position.s_ref, sine.y) annotation (Line(
-          points={{16,78},{-11,78}},
+          points={{32,78},{25,78}},
           color={0,0,127},
           smooth=Smooth.None));
       connect(mass1.frame_b, revolute.frame_a) annotation (Line(
-          points={{90,50},{94,50},{94,36}},
+          points={{80,50},{84,50},{84,36}},
           color={95,95,95},
           thickness=0.5,
           smooth=Smooth.None));
       connect(revolute.frame_b, rod.frame_a) annotation (Line(
-          points={{94,16},{94,0}},
+          points={{84,16},{84,0}},
           color={95,95,95},
           thickness=0.5,
           smooth=Smooth.None));
       connect(rod.frame_b, pendulum.frame_a) annotation (Line(
-          points={{94,-20},{94,-29}},
+          points={{84,-20},{84,-29}},
           color={95,95,95},
           thickness=0.5,
           smooth=Smooth.None));
@@ -222,18 +243,45 @@ package ExternalMemoryLib
           color={95,95,95},
           thickness=0.5,
           smooth=Smooth.None));
-      connect(world.frame_b,raisePosition. frame_a) annotation (Line(
-          points={{-72,50},{-60,50}},
+      connect(position1.s_ref, trapezoid.y) annotation (Line(
+          points={{-40,78},{-49,78}},
+          color={0,0,127},
+          smooth=Smooth.None));
+      connect(position1.flange, forwardfeed.axis) annotation (Line(
+          points={{-18,78},{-14,78},{-14,56}},
+          color={0,127,0},
+          smooth=Smooth.None));
+      connect(position1.support, forwardfeed.support) annotation (Line(
+          points={{-28,68},{-28,56},{-26,56}},
+          color={0,0,0},
+          pattern=LinePattern.None,
+          smooth=Smooth.None));
+      connect(downfeed.frame_b, forwardfeed.frame_a) annotation (Line(
+          points={{-82,50},{-32,50}},
           color={95,95,95},
           thickness=0.5,
           smooth=Smooth.None));
-      connect(forwardfeed.frame_a, raisePosition.frame_b) annotation (Line(
-          points={{-32,50},{-40,50}},
+      connect(downfeed.frame_a, world.frame_b) annotation (Line(
+          points={{-102,50},{-114,50},{-114,50},{-118,50},{-118,10},{-120,10}},
           color={95,95,95},
           thickness=0.5,
+          smooth=Smooth.None));
+      connect(position2.support, downfeed.support) annotation (Line(
+          points={{-96,66},{-96,56}},
+          color={0,0,0},
+          pattern=LinePattern.None,
+          smooth=Smooth.None));
+      connect(position2.flange, downfeed.axis) annotation (Line(
+          points={{-86,76},{-84,76},{-84,56},{-84,56}},
+          color={0,127,0},
+          smooth=Smooth.None));
+      connect(ramp.y, position2.s_ref) annotation (Line(
+          points={{-117,76},{-108,76}},
+          color={0,0,127},
           smooth=Smooth.None));
       annotation (                                 Diagram(coordinateSystem(
-              preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),StopTime=10);
+              preserveAspectRatio=false, extent={{-140,-100},{100,100}}), graphics),StopTime=20,
+        Icon(coordinateSystem(extent={{-140,-100},{100,100}})));
     end Wreckingball;
 
     model RealArray "Just a simple testmodel."
