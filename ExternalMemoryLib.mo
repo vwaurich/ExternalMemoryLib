@@ -398,8 +398,8 @@ package ExternalMemoryLib
       external "C" extMem =  externalMemoryRealConstructor(size)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end constructor;
 
     function destructor
@@ -407,8 +407,8 @@ package ExternalMemoryLib
       external "C" externalMemoryRealDestructor(extMem)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end destructor;
   end ExternalMemoryReal;
 
@@ -421,8 +421,8 @@ package ExternalMemoryLib
       external "C" extMem =  externalMemoryIntConstructor(size)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end constructor;
 
     function destructor
@@ -430,8 +430,8 @@ package ExternalMemoryLib
       external "C" externalMemoryIntDestructor(extMem)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end destructor;
   end ExternalMemoryInt;
 
@@ -444,8 +444,8 @@ package ExternalMemoryLib
       external "C" extMem =  externalMemoryBoolConstructor(size)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end constructor;
 
     function destructor
@@ -453,8 +453,8 @@ package ExternalMemoryLib
       external "C" externalMemoryBoolDestructor(extMem)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end destructor;
   end ExternalMemoryBool;
 
@@ -468,8 +468,8 @@ package ExternalMemoryLib
       external "C" extMem =  externalMemoryRealTCConstructor(size,timeIn)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end constructor;
 
     function destructor
@@ -477,8 +477,8 @@ package ExternalMemoryLib
       external "C" externalMemoryRealTCDestructor(extMem)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end destructor;
   end ExternalMemoryRealTC;
 
@@ -490,8 +490,8 @@ package ExternalMemoryLib
       external "C" setRealValueAt(extMem, idx, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end setRealValueAt;
 
     impure function getRealValueAt
@@ -501,8 +501,8 @@ package ExternalMemoryLib
       external "C" getRealValueAt(extMem, idx, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getRealValueAt;
 
     function getRealRangeAt
@@ -527,9 +527,9 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    IncludeDirectory = "modelica://ExternalMemoryLib/Resources/Include",
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
-      end setRealRangeAt;
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
+    end getRealRangeAt;
 
     function setIntValueAt
       input ExternalMemoryInt extMem;
@@ -538,8 +538,8 @@ package ExternalMemoryLib
       external "C" setIntValueAt(extMem, idx, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end setIntValueAt;
 
     function getIntValueAt
@@ -549,8 +549,8 @@ package ExternalMemoryLib
       external "C" getIntValueAt(extMem, idx, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getIntValueAt;
 
     function getIntRangeAt
@@ -561,8 +561,8 @@ package ExternalMemoryLib
       external "C" getIntRangeAt(extMem, startIdx, len, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getIntRangeAt;
 
     function setBoolValueAt
@@ -572,8 +572,8 @@ package ExternalMemoryLib
       external "C" setBoolValueAt(extMem, idx, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end setBoolValueAt;
 
     function getBoolValueAt
@@ -583,8 +583,8 @@ package ExternalMemoryLib
       external "C" getBoolValueAt(extMem, idx, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getBoolValueAt;
 
     function getBoolRangeAt_notWorking
@@ -596,8 +596,8 @@ package ExternalMemoryLib
       external "C" getBoolRangeAt(extMem, startIdx, len, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getBoolRangeAt_notWorking;
 
     function setRealValueAtWithTC
@@ -608,8 +608,8 @@ package ExternalMemoryLib
       external "C" setRealValueAtWithTC(extMem, idx, value, timeIn)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end setRealValueAtWithTC;
 
     function getRealValueAtWithTC
@@ -621,8 +621,8 @@ package ExternalMemoryLib
       external "C" getRealValueAtWithTC(extMem, idx, value, timeIn, fallbackValue)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getRealValueAtWithTC;
 
     function getRealRangeAtWithTC
@@ -635,8 +635,8 @@ package ExternalMemoryLib
       external "C" getRealRangeAtWithTC(extMem, startIdx, len, value, timeIn, fallbackValue)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dll = "ITI_ExternalMemory.dll",
+                   __iti_dllNoExport = false);
     end getRealRangeAtWithTC;
 
   end ExternalMemory_;
