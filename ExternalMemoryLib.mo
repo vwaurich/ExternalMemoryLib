@@ -513,7 +513,7 @@ package ExternalMemoryLib
       external "C" getRealRangeAt(extMem, startIdx, len, value)
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
-                   __iti_dll = "ExternalMemory.dll",
+                   __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = true);
     end getRealRangeAt;
 
