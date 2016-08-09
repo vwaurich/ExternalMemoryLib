@@ -2,7 +2,7 @@ within ;
 package ExternalMemoryLib
   package Functions
     "This package wraps the actual external functions and tries to force the compiler to treat the functions as dynamic functions."
-    impure function setReal
+    function setReal
       input ExternalMemoryLib.ExternalMemoryReal arr;
       input Integer idx;
       input Real value;
@@ -15,7 +15,7 @@ package ExternalMemoryLib
       end if;
     end setReal;
 
-    impure function setRealRange
+    function setRealRange
       input ExternalMemoryLib.ExternalMemoryReal arr;
       input Integer idx;
       input Integer size;
@@ -29,7 +29,7 @@ package ExternalMemoryLib
       end if;
     end setRealRange;
 
-    impure function getReal
+    function getReal
       "gets the indexed value of the array. The input timeIn and this strange if-else-clause is just to force the compiler to treat this call as a dynamic call. Any ideas how to fix it?"
       input ExternalMemoryLib.ExternalMemoryReal arr;
       input Integer idx;
@@ -43,7 +43,7 @@ package ExternalMemoryLib
       end if;
     end getReal;
 
-    impure function getRealRange
+    function getRealRange
       input ExternalMemoryLib.ExternalMemoryReal arr;
       input Integer idx;
       input Integer size;
@@ -495,7 +495,7 @@ package ExternalMemoryLib
                    annotation(__ModelicaAssociation_Impure=true);
     end setRealValueAt;
 
-    impure function getRealValueAt
+    function getRealValueAt
       input ExternalMemoryReal extMem;
       input Integer idx "0-based";
       output Real value;
