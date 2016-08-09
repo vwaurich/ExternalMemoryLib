@@ -492,6 +492,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                   annotation(__ModelicaAssociation_Impure=true);
     end setRealValueAt;
 
     impure function getRealValueAt
@@ -503,6 +504,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                   annotation(__ModelicaAssociation_Impure=true);
     end getRealValueAt;
 
     function getRealRangeAt
@@ -514,7 +516,8 @@ package ExternalMemoryLib
         annotation(Include = "#include \"ExternalMemory.h\"",
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
-                   __iti_dllNoExport = true);
+                   __iti_dllNoExport = false);
+                                             annotation(__ModelicaAssociation_Impure=true);
     end getRealRangeAt;
 
       function setRealRangeAt
@@ -529,6 +532,7 @@ package ExternalMemoryLib
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
       end setRealRangeAt;
 
     function setIntValueAt
@@ -540,6 +544,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end setIntValueAt;
 
     function getIntValueAt
@@ -551,6 +556,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end getIntValueAt;
 
     function getIntRangeAt
@@ -563,6 +569,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end getIntRangeAt;
 
     function setBoolValueAt
@@ -574,6 +581,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end setBoolValueAt;
 
     function getBoolValueAt
@@ -585,6 +593,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end getBoolValueAt;
 
     function getBoolRangeAt_notWorking
@@ -598,6 +607,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end getBoolRangeAt_notWorking;
 
     function setRealValueAtWithTC
@@ -610,6 +620,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end setRealValueAtWithTC;
 
     function getRealValueAtWithTC
@@ -623,6 +634,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end getRealValueAtWithTC;
 
     function getRealRangeAtWithTC
@@ -637,6 +649,7 @@ package ExternalMemoryLib
                    Library = "ExternalMemory",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
+                                              annotation(__ModelicaAssociation_Impure=true);
     end getRealRangeAtWithTC;
 
   end ExternalMemory_;
