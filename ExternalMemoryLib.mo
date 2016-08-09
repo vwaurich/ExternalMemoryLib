@@ -241,13 +241,13 @@ package ExternalMemoryLib
       Real v1(start=0),v2,v3;
     equation
       val = time;
-      ExternalMemoryLib.Functions.setReal(realArray,0,val-1,time);
-      ExternalMemoryLib.Functions.setReal(realArray,1,val+1,time);
-      ExternalMemoryLib.Functions.setReal(realArray,2,val,time);
+      ExternalMemoryLib.Functions.setReal(realArray,1,val-1,time);
+      ExternalMemoryLib.Functions.setReal(realArray,2,val+1,time);
+      ExternalMemoryLib.Functions.setReal(realArray,3,val,time);
 
-      v1 = ExternalMemoryLib.Functions.getReal(realArray,0,time);
-      v2 = ExternalMemoryLib.Functions.getReal(realArray,1,time);
-      v3 = ExternalMemoryLib.Functions.getReal(realArray,2,time);
+      v1 = ExternalMemoryLib.Functions.getReal(realArray,1,time);
+      v2 = ExternalMemoryLib.Functions.getReal(realArray,2,time);
+      v3 = ExternalMemoryLib.Functions.getReal(realArray,3,time);
 
     end RealArray;
 
@@ -261,8 +261,8 @@ package ExternalMemoryLib
 
     equation
       val = {time+1,time,time-1};
-      ExternalMemoryLib.Functions.setRealRange(realArray,0,arraySize,val,time);
-      v1 = ExternalMemoryLib.Functions.getRealRange(realArray,0,3,time);
+      ExternalMemoryLib.Functions.setRealRange(realArray,1,arraySize,val,time);
+      v1 = ExternalMemoryLib.Functions.getRealRange(realArray,1,arraySize,time);
     end RealArrayRange;
 
     model BoolArray "Just a simple testmodel."
@@ -529,7 +529,7 @@ package ExternalMemoryLib
                    LibraryDirectory = "modelica://ExternalMemoryLib/Resources/Library/win32",
                    __iti_dll = "ITI_ExternalMemory.dll",
                    __iti_dllNoExport = false);
-    end getRealRangeAt;
+      end setRealRangeAt;
 
     function setIntValueAt
       input ExternalMemoryInt extMem;
